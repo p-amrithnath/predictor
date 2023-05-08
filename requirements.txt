@@ -2,3 +2,5 @@ streamlit
 fbprophet
 yfinance
 plotly
+nummpy
+pamdas
