@@ -1,5 +1,5 @@
 streamlit
-fbprophet
+prophet
 yfinance
 plotly
 protobuf
