@@ -3,3 +3,4 @@ prophet
 yfinance
 plotly
 protobuf
+chart_studio
