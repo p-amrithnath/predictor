@@ -4,3 +4,4 @@ yfinance
 plotly
 nummpy
 pamdas
+protobuf
