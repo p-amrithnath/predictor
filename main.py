@@ -18,7 +18,7 @@ if switch:
     START = "2010-01-01"
     TODAY = date.today().strftime("%Y-%m-%d")
 
-    st.title('Stock Trend Predictor')
+    st.title('Stock Price Predictor')
     st.text("created by CECians...")
 
     stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TCS.NS')
@@ -80,7 +80,7 @@ if switch:
 else:
     st.write("BASED ON HISTORICAL DATA...")
 
-    st.title('Stock Forecast App')
+    st.title('Stock Price Predictor')
 
     dataset = ("ADANIENT","AXISBANK","CANBK","BAJFINANCE","SUNTV","TATAMOTORS","TVSMOTOR","VGUARD","VOLTAS","WIPRO","SIEMENS")
     selected_stock = st.selectbox('Select dataset for prediction',dataset)
