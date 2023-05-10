@@ -86,7 +86,7 @@ else:
     selected_stock = st.selectbox('Select dataset for prediction',dataset)
     DATA_URL = ('./HISTORICAL_DATA/'+selected_stock+'_data.csv')
 
-    year = st.slider('Year of prediction:',1,4)
+    year = st.slider('Year of prediction:',1,5)
     period = year * 365
      
     
