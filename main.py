@@ -10,7 +10,12 @@ import plotly.figure_factory as ff
 from plotly import graph_objs as go
 from prophet import Prophet
 from prophet.plot import plot_plotly
-
+# Calculate Mean Absolute Percentage Error (MAPE)
+def calculate_mape(actual, predicted):
+    actual = np.array(actual)
+    predicted = np.array(predicted)
+    mape = np.mean(np.abs((actual - predicted) / actual)) * 100
+    return mape
 switch = st.checkbox("LIVE DATA")
 if switch:
     st.write("LIVE UPDATES IN STOCKS...")
@@ -68,11 +73,22 @@ if switch:
     # Show and plot forecast
     st.subheader('Forecast data')
     st.write(forecast.tail())
-    
+
     st.write(f'Forecast plot for {n_years} years')
-    fig1 = plot_plotly(m, forecast)
+	fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
 
+     # Calculate and display MAPE
+    actual_prices = data['Close'].values[-period:]
+    predicted_prices = forecast['yhat'].values[-period:]
+    mape = calculate_mape(actual_prices, predicted_prices)
+    mae = np.mean(np.abs(predicted_prices - actual_prices))
+    st.write('Mean Absolute Percentage Error (MAPE):', round(mape, 2), '%')
+    st.write(f"Mean Absolute Error (MAE): {mae:.2f}")
+    Accuracy=100-mape
+    st.write('Accuracy :', round(Accuracy, 2), '%')
+    
+    
     st.write("Forecast components")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
@@ -136,6 +152,17 @@ else:
         st.write('Forecasting closing of stock value for'+selected_stock+' for a period of: '+ str(year) +'year')
     st.plotly_chart(fig1)
 
+     # Calculate and display MAPE
+    actual_prices = data_pred['y'].values[-period:]
+    predicted_prices = forecast['yhat'].values[-period:]
+    mape = calculate_mape(actual_prices, predicted_prices)
+    mae = np.mean(np.abs(predicted_prices - actual_prices))
+    st.write('Mean Absolute Percentage Error (MAPE):', round(mape, 2), '%')
+    st.write(f"Mean Absolute Error (MAE): {mae:.2f}")
+    Accuracy=100-mape
+    st.write('Accuracy :', round(Accuracy, 2), '%')
+
+	
     #plot component wise forecast
     st.write("Component wise forecast")
     fig2 = m.plot_components(forecast)
