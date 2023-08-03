@@ -39,8 +39,10 @@ if switch:
     data = load_data(selected_stock)
     data_load_state.text('Loading data... done!')
 
-    st.subheader('Raw data')
-    st.write(data.tail())
+    if st.checkbox('Show raw data'):
+        st.subheader('Raw data')
+        st.write(data)
+    
 
     def plot_raw_data():
         fig = go.Figure()
@@ -60,11 +62,13 @@ if switch:
     future = m.make_future_dataframe(periods=period)
     forecast = m.predict(future)
 
-    # Show and plot forecast
-    st.subheader('Forecast data')
-    st.write(forecast.tail())
+
+    if st.checkbox('Show forecast data'):
+        st.subheader('forecast data')
+        st.write(forecast)
+        
     
-    st.write(f'Forecast plot for {n_years} years')
+    st.write('Forecasting closing of stock value for', selected_stock, 'for a period of:', str(n_years), 'year')
     fig1 = plot_plotly(m, forecast)
     st.plotly_chart(fig1)
 
@@ -76,7 +80,7 @@ if switch:
     st.write('Mean Absolute Percentage Error (MAPE):', round(mape, 2), '%')
     st.write(f"Mean Absolute Error (MAE): {mae:.2f}")
     Accuracy=100-mape
-    
+
     st.write('Accuracy :', round(Accuracy, 2), '%')
     st.write("Forecast components")
     fig2 = m.plot_components(forecast)
@@ -88,7 +92,6 @@ else:
     st.write("BASED ON HISTORICAL DATA...")
 
     st.title('Stock Price Predictor')
-    st.text("created by CECians...")
 
     dataset = ("ADANIENT","AXISBANK","CANBK","BAJFINANCE","SUNTV","TATAMOTORS","TVSMOTOR","VGUARD","VOLTAS","WIPRO","SIEMENS")
     selected_stock = st.selectbox('Select dataset for prediction', dataset)
@@ -133,7 +136,7 @@ else:
     if st.checkbox('Show forecast data'):
         st.subheader('forecast data')
         st.write(forecast)
-        st.write('Forecasting closing of stock value for', selected_stock, 'for a period of:', str(year), 'year')
+    st.write('Forecasting closing of stock value for', selected_stock, 'for a period of:', str(year), 'year')    
     st.plotly_chart(fig1)
     
     # Calculate and display MAPE
@@ -150,6 +153,3 @@ else:
     st.write("Component wise forecast")
     fig2 = m.plot_components(forecast)
     st.write(fig2)
-
-    
-    
