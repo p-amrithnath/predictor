@@ -92,6 +92,7 @@ else:
     st.write("BASED ON HISTORICAL DATA...")
 
     st.title('Stock Price Predictor')
+    st.text("created by CECians...")
 
     dataset = ("ADANIENT","AXISBANK","CANBK","BAJFINANCE","SUNTV","TATAMOTORS","TVSMOTOR","VGUARD","VOLTAS","WIPRO","SIEMENS")
     selected_stock = st.selectbox('Select dataset for prediction', dataset)
