@@ -24,7 +24,7 @@ if switch:
     st.title('Stock Price Predictor')
     st.text("created by CECians...")
 
-    stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TCS.NS','AMZN')
+    stocks = ('GOOG', 'AAPL', 'MSFT', 'GME', 'TCS.NS','ADANIENT','AXISBANK','CANBK','BAJFINANCE','SUNTV','TATAMOTORS',"TVSMOTOR','VGUARD','VOLTAS','WIPRO','SIEMENS')
     selected_stock = st.selectbox('Select dataset for prediction', stocks)
 
     n_years = st.slider('Years of prediction:', 1, 5)
